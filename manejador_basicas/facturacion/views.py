@@ -10,8 +10,10 @@ from facturacion.models.Contrato import Contrato
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from manejador_basicas.auth0backend import getRole
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required
+@csrf_exempt
 def crear_factura(request):
     role= getRole(request)
     if role=="Administrativo":
@@ -47,6 +49,7 @@ def crear_factura(request):
 
 
 @login_required
+@csrf_exempt
 def lista_pacientes(request):
     role= getRole(request)
     if role=="Administrativo":
