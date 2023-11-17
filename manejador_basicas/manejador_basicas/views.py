@@ -6,9 +6,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
-def index(request):
-    return render(request, 'registration/login.html')
+#@csrf_exempt
+#def index(request):
+    #return render(request, 'registration/login.html')
 
 def health_check(request):
     return JsonResponse({'message': 'OK'}, status=200)
