@@ -5,7 +5,7 @@
 </head>
 <body>
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
     <!-- Sección para usuarios autenticados -->
     <ul class="nav navbar-nav navbar-right">
         <li><a style="font-size:120%" class="nav-link">{{ user.username }}</a></li>
@@ -32,6 +32,7 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 {% endif %}
+
 
 
 </body>
