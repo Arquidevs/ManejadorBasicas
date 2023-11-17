@@ -22,8 +22,8 @@ urlpatterns = [
     path('', views.index),
     path('/facturacion/', include('facturacion.urls')),
     path('health/', views.health_check, name='health'),
-    path(r'', include('django.contrib.auth.urls')),
-    path(r'', include('social_django.urls')),
+    path('', include('django.contrib.auth.urls')),
+    path('', include('social_django.urls')),
     path('login/', views.login_view, name='login'),
     path('dashboard/', views.dashboard_view, name='dashboard'),
 ]
