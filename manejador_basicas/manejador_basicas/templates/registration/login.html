@@ -12,18 +12,12 @@
         <li><a style="font-size:120%; padding-right:20px" class="nav-link" href="/logout">Log out</a></li>
     </ul>
     <!-- Redireccionamiento a index.html si el usuario está autenticado -->
-    {% if request.GET.next %}
         <script>
-            window.location.href = "{{ request.GET.next }}";
+            window.location.href = "{% url 'manejador_basicas/templates/index.html' %}";
         </script>
-    {% else %}
-        <script>
-            window.location.href = "{% url 'index' %}";
-        </script>
-    {% endif %}
 {% else %}
     <!-- Sección para usuarios no autenticados -->
-    <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}?next={% url 'index' %}" method="post">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}?next={% url 'manejador_basicas/templates/index.html' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Login</button>
