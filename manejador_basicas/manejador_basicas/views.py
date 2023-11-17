@@ -18,5 +18,3 @@ def login_view(request):
             login(request, user)  # Autenticar al usuario y establecer la sesión
             # Puedes redirigir a la página que desees después del inicio de sesión
             return HttpResponseRedirect('/manejador_basicas/templates/index/')  # Cambia '/dashboard/' por la URL deseada
-
-    return render(request, 'registration/login.html', {'form': form})
