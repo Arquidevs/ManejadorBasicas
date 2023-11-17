@@ -5,26 +5,34 @@
 </head>
 <body>
 
-<form class="form-inline my-2 my-lg-0">
-    {% if user.is_authenticated %}
-        <!-- Sección para usuarios autenticados -->
-        <ul class="nav navbar-nav navbar-right">
-            <li><a style="font-size:120%" class="nav-link">{{ user.username }}</a></li>
-            <li><a style="font-size:120%; padding-right:20px" class="nav-link" href="/logout">Log out</a></li>
-        </ul>
-        <!-- Redireccionamiento a index.html si el usuario está autenticado -->
-        <script>
-            window.location.href = "/index.html";
-        </script>
-    {% else %}
-        <!-- Sección para usuarios no autenticados -->
-        <ul class="nav navbar-nav navbar-right">
-            <li><a style="font-size:120%; padding-right:20px" class="navbar-link" href="/login/auth0">Login</a></li>
-        </ul>
-    {% endif %}
-</form>
+{% if user.is_authenticated %}
+    <!-- Sección para usuarios autenticados -->
+    <ul class="nav navbar-nav navbar-right">
+        <li><a style="font-size:120%" class="nav-link">{{ user.username }}</a></li>
+        <li><a style="font-size:120%; padding-right:20px" class="nav-link" href="/logout">Log out</a></li>
+    </ul>
+    <!-- Redireccionamiento a index.html si el usuario está autenticado -->
+    <script>
+        window.location.href = "/index.html";
+    </script>
+{% else %}
+    <!-- Sección para usuarios no autenticados -->
+    <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
 
-<!-- Otro contenido de tu página... -->
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+{% endif %}
+
 
 </body>
 </html>
