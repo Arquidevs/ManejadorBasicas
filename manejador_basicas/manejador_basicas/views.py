@@ -1,6 +1,8 @@
-from multiprocessing import AuthenticationError
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
+from django.contrib.auth import login
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 
 def index(request):
@@ -11,10 +13,15 @@ def health_check(request):
 
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationError(request, request.POST)
+        form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            # Lógica de inicio de sesión aquí
             user = form.get_user()
-            login(request, user)  # Autenticar al usuario y establecer la sesión
-            # Puedes redirigir a la página que desees después del inicio de sesión
-            return HttpResponseRedirect('/manejador_basicas/templates/index/')  # Cambia '/dashboard/' por la URL deseada
+            login(request, user)
+            return redirect('dashboard')
+    else:
+        form = AuthenticationForm(request)
+
+    return render(request, 'manejador_basicas/templates/login.html', {'form': form})
+
+def dashboard_view(request):
+    return render(request, 'manejador_basicas/templates/index.html')
