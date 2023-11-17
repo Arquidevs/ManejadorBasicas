@@ -1,10 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<body>
 
-{% extends 'manejador_basicas/templates/base.html' %}
-<h2>Login</h2>
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+<form class="form-inline my-2 my-lg-0">
+    {% if user.is_authenticated %}
+        <!-- Sección para usuarios autenticados -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a style="font-size:120%" class="nav-link">{{ user.username }}</a></li>
+            <li><a style="font-size:120%; padding-right:20px" class="nav-link" href="/logout">Log out</a></li>
+        </ul>
+        <!-- Redireccionamiento a index.html si el usuario está autenticado -->
+        <script>
+            window.location.href = "manejador_basicas/templates/index.html";
+        </script>
+    {% else %}
+        <!-- Sección para usuarios no autenticados -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a style="font-size:120%; padding-right:20px" class="navbar-link" href="/login/auth0">Login</a></li>
+        </ul>
+    {% endif %}
 </form>
 
