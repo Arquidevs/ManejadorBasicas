@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'manejador_basicas/templates/index.html')
 
 def health_check(request):
     return JsonResponse({'message': 'OK'}, status=200)
