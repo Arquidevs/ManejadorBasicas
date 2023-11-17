@@ -28,5 +28,5 @@ urlpatterns = [
     path('', include('social_django.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('', views.login_view, name='index'),
+    path('index/', views.login_view, name='index'),
 ]
