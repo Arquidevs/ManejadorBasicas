@@ -145,3 +145,7 @@ AUTHENTICATION_BACKENDS = {
  'manejador_basicas.auth0backend.Auth0',
  'django.contrib.auth.backends.ModelBackend',
 }
+
+
+SESSION_COOKIE_SAMESITE = None
+
