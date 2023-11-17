@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
 
+def index(request):
+    return render(request, 'manejador_basicas/templates/index.html')
 
 def health_check(request):
     return JsonResponse({'message': 'OK'}, status=200)
