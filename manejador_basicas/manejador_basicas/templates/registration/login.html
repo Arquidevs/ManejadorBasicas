@@ -23,7 +23,7 @@
     {% endif %}
 {% else %}
     <!-- Sección para usuarios no autenticados -->
-    <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}?next=/index/" method="post">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}?next=''" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Login</button>
