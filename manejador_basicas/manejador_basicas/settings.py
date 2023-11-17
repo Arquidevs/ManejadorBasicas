@@ -155,3 +155,4 @@ CSRF_TRUSTED_ORIGINS = ['http://34.41.112.180:8000']
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'   
 
+

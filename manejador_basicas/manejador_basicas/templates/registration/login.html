@@ -13,7 +13,7 @@
     </ul>
     <!-- Redireccionamiento a index.html si el usuario está autenticado -->
     <script>
-        window.location.href = "manejador_basicas/templates/index.html";
+        window.location.href ="{% url 'index' %}";
     </script>
 {% else %}
     <!-- Sección para usuarios no autenticados -->
