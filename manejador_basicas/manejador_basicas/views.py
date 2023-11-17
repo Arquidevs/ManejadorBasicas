@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def index(request):
-    return render(request, 'manejador_basicas/templates/login.html')
+    return render(request, 'manejador_basicas/templates/registration/login.html')
 
 def health_check(request):
     return JsonResponse({'message': 'OK'}, status=200)
