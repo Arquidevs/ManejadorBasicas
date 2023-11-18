@@ -1,0 +1,25 @@
+<!-- monitoring/templates/monitoring/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RASI{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Monitoreo</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/measurements/">Mediciones</a></li>
+                <li><a href="/variables/">Variables</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
