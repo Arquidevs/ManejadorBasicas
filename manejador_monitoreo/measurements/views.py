@@ -3,18 +3,16 @@ from .forms import MeasurementForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .logic.logic_measurement import create_measurement, get_measurements, getPromedioAnormal
+from .logic.logic_measurement import create_measurement, get_measurements
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def measurement_list(request):
     measurements = get_measurements()
-    average_heart_rate = getPromedioAnormal()
-    
     context = {
-        'measurements': measurements,
-        'average_heart_rate': average_heart_rate,
+        'measurement_list': measurements
     }
-    
-    return render(request, 'measurement.html', context)
+    return render(request, 'measurements.html', context)
 
 def measurement_create(request):
     if request.method == 'POST':
