@@ -7,6 +7,7 @@ def get_variables():
 
 
 def create_variable(name):
+    name = name[:100]
     variable, created = Variable.objects.get_or_create(name=name)
     if created:
         variable.save()
