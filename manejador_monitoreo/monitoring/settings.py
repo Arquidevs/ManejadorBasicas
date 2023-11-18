@@ -130,3 +130,20 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'danielfelipe111@gmail.com'
 EMAIL_HOST_PASSWORD = 'zxyehekljpsaxapy'
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://rasi-grupo6.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.30.163.207:8080"
+SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'rasi-grupo6.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'TTSyu3bust9HvocU7FFTt3nUUn2ouNUO'
+SOCIAL_AUTH_AUTH0_SECRET = 'GeCXMP5_b6xJy1Pucd9P-etsN1ovW5n78EzXDIXibXlz4UZNzKSl4X8reE100llk'
+SOCIAL_AUTH_AUTH0_SCOPE = [
+ 'openid',
+ 'profile',
+ 'email',
+ 'role',
+]
+AUTHENTICATION_BACKENDS = {
+ 'monitoring.auth0backend.Auth0',
+ 'django.contrib.auth.backends.ModelBackend',
+}
