@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import VariableForm
 from .logic.variable_logic import get_variables, create_variable
+from django.http import HttpResponse
+
 
 def variable_list(request):
     variables = get_variables()
@@ -16,15 +18,19 @@ def variable_create(request):
     if request.method == 'POST':
         form = VariableForm(request.POST)
         if form.is_valid():
-            create_variable(form)
-            messages.add_message(request, messages.SUCCESS, 'Successfully created variable')
-            return HttpResponseRedirect(reverse('variable_list'))
+            name = form.cleaned_data['name']
+            name = name[:100]
+            variable = create_variable(name)
+
+            if variable:
+                messages.success(request, 'Variable creada exitosamente.')
+                return redirect(reverse('variableList'))
+            else:
+                messages.error(request, 'Hubo un problema al crear la variable.')
         else:
-            print(form.errors)
+            messages.error(request, 'Formulario no válido. Verifica los datos ingresados.')
     else:
         form = VariableForm()
 
-    context = {
-        'form': form,
-    }
+    context = {'form': form}
     return render(request, 'variableCreate.html', context)
