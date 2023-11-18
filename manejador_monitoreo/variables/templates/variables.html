@@ -1,29 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Variables</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Lista de Variables</h1>
+{% block content %}
+  <div class="container">
+    <h2>Lista de Variables</h2>
 
-<!-- Mostrar la lista de variables -->
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Unidad</th>
-    </tr>
-    {% for variable in variable_list %}
-    <tr>
-        <td>{{ variable.id }}</td>
-        <td>{{ variable.name }}</td>
-        <td>{{ variable.description }}</td>
-        <td>{{ variable.unit }}</td>
-    </tr>
-    {% endfor %}
-</table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Unidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for variable in variable_list %}
+          <tr>
+            <td>{{ variable.id }}</td>
+            <td>{{ variable.name }}</td>
+            <td>{{ variable.description }}</td>
+            <td>{{ variable.unit }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-</body>
-</html>
+    <a href="{% url 'index' %}" class="btn">Volver a la Página de Inicio</a>
+  </div>
+{% endblock %}

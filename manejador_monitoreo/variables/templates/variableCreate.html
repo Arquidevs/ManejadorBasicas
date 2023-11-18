@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crear Variable</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Crear Variable</h1>
+{% block content %}
+  <div class="container">
+    <h2>Crear Variable</h2>
 
-<!-- Formulario para crear una nueva variable -->
-<form method="post" action="{% url 'variable_create' %}">
-    {% csrf_token %}
-    <label for="id_name">Nombre:</label>
-    <input type="text" name="name" id="id_name" required>
-    <br>
-    <label for="id_description">Descripción:</label>
-    <textarea name="description" id="id_description" rows="4" cols="50"></textarea>
-    <br>
-    <label for="id_unit">Unidad:</label>
-    <input type="text" name="unit" id="id_unit">
-    <br>
-    <button type="submit">Crear Variable</button>
-</form>
+    <form method="post" class="form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Crear Variable</button>
+    </form>
 
-</body>
-</html>
+    <a href="{% url 'index' %}" class="btn">Volver a la Página de Inicio</a>
+  </div>
+{% endblock %}
