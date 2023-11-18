@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Measurement List</title>
+</head>
+<body>
+
+<h1>Measurement List</h1>
+
+<!-- Mostrar el promedio de pacientes con BPM anormal -->
+<h2>Promedio de pacientes con BPM anormal: {{ average_heart_rate }}</h2>
+
+<!-- Mostrar la lista de medidas -->
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Valor</th>
+        <th>Fecha y Hora</th>
+        <th>Variable</th>
+    </tr>
+    {% for measurement in measurements %}
+    <tr>
+        <td>{{ measurement.id }}</td>
+        <td>{{ measurement.value }}</td>
+        <td>{{ measurement.timestamp }}</td>
+        <td>{{ measurement.variable.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
