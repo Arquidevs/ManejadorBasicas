@@ -14,7 +14,7 @@ def measurement_list(request):
         'average_heart_rate': average_heart_rate,
     }
     
-    return render(request, 'measurement_list.html', context)
+    return render(request, 'Measurement/measurement.html', context)
 
 def measurement_create(request):
     if request.method == 'POST':
@@ -32,4 +32,4 @@ def measurement_create(request):
         'form': form,
     }
 
-    return render(request, 'measurementCreate.html', context)
+    return render(request, 'Measurement/measurementCreate.html', context)
