@@ -17,7 +17,7 @@ def create_measurement_object(variable, value, unit):
 
 def getPromedioAnormal():
     abnormal_measurements = Measurement.objects.filter(
-        variable__name='Patient.heart-rate',
+        variable__name='heart-rate',
         anormal=True,
         value__lt=50,
     ).exclude(value__gt=120)
