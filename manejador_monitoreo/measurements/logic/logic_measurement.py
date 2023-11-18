@@ -16,6 +16,14 @@ def create_measurement_object(variable, value, unit):
     return measurement
 
 def getPromedioAnormal():
-    average_abnormal_heart_rate = Measurement.objects.filter(variable__name='Heart-rate', anormal=True).aggregate(Avg('value'))
-    
-    return average_abnormal_heart_rate['value__avg'] 
+    abnormal_measurements = Measurement.objects.filter(
+        variable__name='Patient.heart-rate',
+        anormal=True,
+        value__lt=50,
+    ).exclude(value__gt=120)
+
+    if abnormal_measurements.exists():
+        average_abnormal_heart_rate = abnormal_measurements.aggregate(Avg('value'))
+        return average_abnormal_heart_rate['value__avg']
+    else:
+        return None
