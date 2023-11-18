@@ -12,7 +12,7 @@ def measurement_list(request):
     context = {
         'measurement_list': measurements
     }
-    return render(request, 'measurements.html', context)
+    return render(request, 'measurement.html', context)
 
 def measurement_create(request):
     if request.method == 'POST':
