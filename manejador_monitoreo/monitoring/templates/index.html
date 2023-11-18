@@ -1,0 +1,51 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #4caf50;
+            color: white;
+            border: 1px solid #4caf50;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: white;
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bienvenido al Sistema de Monitoreo</h1>
+
+<div class="buttons">
+    <a href="{% url 'measurement_list' %}" class="button">Ver Medidas</a>
+    <a href="{% url 'variable_list' %}" class="button">Ver Variables</a>
+</div>
+
+</body>
+</html>
