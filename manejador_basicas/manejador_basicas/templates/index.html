@@ -79,6 +79,7 @@
             <div id="formulario-crear-factura">
                 <h2>Generar Factura</h2>
                 <form action="{% url 'crear_factura' %}" method="get">
+                    {% csrf_token %}
                     <label for="cedula_paciente">Cédula del Paciente:</label>
                     <input type="text" id="cedula_paciente" name="cedula_paciente">
                     <button type="submit" class="btn">Generar Factura</button>
