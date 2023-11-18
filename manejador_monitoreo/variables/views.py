@@ -10,7 +10,7 @@ def variable_list(request):
     context = {
         'variable_list': variables
     }
-    return render(request, 'Variable/variables.html', context)
+    return render(request, 'variables.html', context)
 
 def variable_create(request):
     if request.method == 'POST':
@@ -27,4 +27,4 @@ def variable_create(request):
     context = {
         'form': form,
     }
-    return render(request, 'Variable/variableCreate.html', context)
+    return render(request, 'variableCreate.html', context)

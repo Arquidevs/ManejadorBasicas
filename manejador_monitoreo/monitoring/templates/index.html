@@ -1,9 +1,7 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inicio</title>
+    <title>Bienvenido al Sistema de Monitoreo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,17 +22,10 @@
             font-size: 16px;
             text-align: center;
             text-decoration: none;
-            background-color: #4caf50;
-            color: white;
-            border: 1px solid #4caf50;
-            cursor: pointer;
+            background-color: #008CBA;
+            color: #fff;
             border-radius: 5px;
             margin-right: 10px;
-        }
-
-        .button:hover {
-            background-color: white;
-            color: #4caf50;
         }
     </style>
 </head>
@@ -45,6 +36,7 @@
 <div class="buttons">
     <a href="{% url 'measurement_list' %}" class="button">Ver Medidas</a>
     <a href="{% url 'variable_list' %}" class="button">Ver Variables</a>
+    <a href="{% url 'variable_create' %}" class="button">Crear Variable</a>
 </div>
 
 </body>
