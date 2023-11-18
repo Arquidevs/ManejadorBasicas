@@ -18,7 +18,7 @@ def variable_create(request):
         if form.is_valid():
             create_variable(form)
             messages.add_message(request, messages.SUCCESS, 'Successfully created variable')
-            return HttpResponseRedirect(reverse('variableCreate'))
+            return HttpResponseRedirect(reverse('variable_list'))
         else:
             print(form.errors)
     else:
