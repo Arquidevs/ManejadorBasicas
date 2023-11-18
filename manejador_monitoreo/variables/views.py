@@ -7,6 +7,7 @@ from .logic.variable_logic import get_variables, create_variable
 
 def variable_list(request):
     variables = get_variables()
+    print(f"Variables: {variables}")
     context = {
         'variable_list': variables
     }
