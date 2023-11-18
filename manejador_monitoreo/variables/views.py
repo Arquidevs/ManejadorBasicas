@@ -18,8 +18,13 @@ def variable_create(request):
     if request.method == 'POST':
         form = VariableForm(request.POST)
         if form.is_valid():
+            # Obtén el valor del campo 'name' del formulario
             name = form.cleaned_data['name']
+
+            # Recorta el nombre si es más largo de lo permitido
             name = name[:100]
+
+            # Crea la variable con el nombre recortado
             variable = create_variable(name)
 
             if variable:
