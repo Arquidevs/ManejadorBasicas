@@ -13,7 +13,6 @@ from manejador_basicas.auth0backend import getRole
 from django.views.decorators.csrf import csrf_exempt
 
 @login_required
-@csrf_exempt
 def crear_factura(request):
     role= getRole(request)
     if role=="Administrativo":
