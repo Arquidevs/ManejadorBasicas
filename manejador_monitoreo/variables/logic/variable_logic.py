@@ -6,12 +6,20 @@ def get_variables():
     return (queryset)
 
 
-def create_variable(name):
-    name = name[:100]
-    variable, created = Variable.objects.get_or_create(name=name)
-    if created:
-        variable.save()
-    return variable
+def create_variable(form):
+    if form.is_valid():
+        name = form.cleaned_data['name']
+        name = name[:100]
+        variable, created = Variable.objects.get_or_create(name=name)
+
+        if created:
+            variable.save()
+        
+        return variable
+    else:
+        print(form.errors)
+        return None
+
 
 def get_variable_by_name(name):
     try:
