@@ -1,30 +1,23 @@
-{% extends 'base.html' %}
+<!-- Botón para volver al inicio -->
+<a href="{% url 'index' %}" class="button">Volver al Inicio</a>
+
+<!-- Mostrar el promedio -->
 <h2>Promedio de pacientes con BPM anormal: {{ average_heart_rate }}</h2>
-{% block content %}
-  <div class="container">
-    <h2>Lista de Medidas</h2>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Valor</th>
-          <th>Fecha y Hora</th>
-          <th>Variable</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for measurement in measurements %}
-          <tr>
-            <td>{{ measurement.id }}</td>
-            <td>{{ measurement.value }}</td>
-            <td>{{ measurement.timestamp }}</td>
-            <td>{{ measurement.variable.name }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-
-    <a href="{% url 'index' %}" class="btn btn-secondary">Volver a la Página de Inicio</a>
-  </div>
-{% endblock %}
+<!-- Mostrar la lista de medidas -->
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Valor</th>
+        <th>Fecha y Hora</th>
+        <th>Variable</th>
+    </tr>
+    {% for measurement in measurements %}
+    <tr>
+        <td>{{ measurement.id }}</td>
+        <td>{{ measurement.value }}</td>
+        <td>{{ measurement.timestamp }}</td>
+        <td>{{ measurement.variable.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
