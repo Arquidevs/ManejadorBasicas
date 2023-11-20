@@ -91,7 +91,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityVa>'
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -103,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -131,11 +130,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "https://facturacion.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.27.72.24:8080"
+LOGOUT_REDIRECT_URL = "https://facturacion.us.auth0.com/v2/logout?returnTo=http%3A>"
 SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
 SOCIAL_AUTH_AUTH0_DOMAIN = 'facturacion.us.auth0.com'
 SOCIAL_AUTH_AUTH0_KEY = '8wIguEUC21F5tqv66uxFqWLn2fp7Rk9S'
-SOCIAL_AUTH_AUTH0_SECRET = 'hggBcQAxygrqE6pB41UpiXorLjMjx8MrUmUAJe0ZMSfnTTFbHtwOcGV9FQtR7TtX'
+SOCIAL_AUTH_AUTH0_SECRET = 'hggBcQAxygrqE6pB41UpiXorLjMjx8MrUmUAJe0ZMSfnTTFbHtwOcG>'
 SOCIAL_AUTH_AUTH0_SCOPE = [
  'openid',
  'profile',
@@ -150,7 +149,7 @@ AUTHENTICATION_BACKENDS = {
 
 SESSION_COOKIE_SAMESITE = None
 
-CSRF_TRUSTED_ORIGINS = ['http://34.41.112.180:8000']
- 
+CSRF_TRUSTED_ORIGINS = ['http://34.41.112.180:8000',
+                        'http://34.27.72.24:8080'] 
 
 
