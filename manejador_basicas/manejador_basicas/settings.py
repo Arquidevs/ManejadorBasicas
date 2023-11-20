@@ -91,7 +91,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityVa>'
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -130,11 +130,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "https://facturacion.us.auth0.com/v2/logout?returnTo=http%3A>"
+LOGOUT_REDIRECT_URL = "https://facturacion.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.135.70.6:8080"
 SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
 SOCIAL_AUTH_AUTH0_DOMAIN = 'facturacion.us.auth0.com'
 SOCIAL_AUTH_AUTH0_KEY = '8wIguEUC21F5tqv66uxFqWLn2fp7Rk9S'
-SOCIAL_AUTH_AUTH0_SECRET = 'hggBcQAxygrqE6pB41UpiXorLjMjx8MrUmUAJe0ZMSfnTTFbHtwOcG>'
+SOCIAL_AUTH_AUTH0_SECRET = 'hggBcQAxygrqE6pB41UpiXorLjMjx8MrUmUAJe0ZMSfnTTFbHtwOcG'
 SOCIAL_AUTH_AUTH0_SCOPE = [
  'openid',
  'profile',
