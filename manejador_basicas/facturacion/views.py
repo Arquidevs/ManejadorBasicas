@@ -35,17 +35,18 @@ def crear_factura(request):
                     factura.append((servicio.descripcion, precio))
                     precio_total += precio
 
-                return render(request, 'resultado_consulta.html', {
-                    'id_factura': paciente.id,  # ID del paciente
-                    'servicios_y_precios': factura,
-                    'precio_total': precio_total  # Precio total
-                })
+                return JsonResponse('hola')
 
             except ObjectDoesNotExist:
                 raise Http404("El paciente no existe")
     else:
         return HttpResponse("Unauthorized User")
 
+"""  render(request, 'resultado_consulta.html', {
+    'id_factura': paciente.id,  # ID del paciente
+    'servicios_y_precios': factura,
+    'precio_total': precio_total  # Precio total
+})"""
 
 
 @login_required
