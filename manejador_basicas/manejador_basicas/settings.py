@@ -150,6 +150,7 @@ AUTHENTICATION_BACKENDS = {
 SESSION_COOKIE_SAMESITE = None
 
 CSRF_TRUSTED_ORIGINS = ['http://34.41.112.180:8000',
-                        'http://34.27.72.24:8080'] 
+                        'http://34.27.72.24:8080',
+                        'http://34.135.70.6:8080/'] 
 
 
