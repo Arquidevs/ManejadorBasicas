@@ -76,12 +76,15 @@ WSGI_APPLICATION = 'manejador_basicas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rasi-db',
-        'USER': 'rasi-db',
-        'PASSWORD': 'rasi2023',
-        'HOST': '10.110.16.3',
-        'PORT': '',
+        'ENGINE': 'djongo',
+        'NAME': 'facturacion',
+        'ENFORCE_SCHEMA': False,  # Puedes ajustar esto según tus necesidades
+        'CLIENT': {
+            'host': 'tu_host',  # Por ejemplo, 'localhost'
+            'port': 27017,  # Puerto de tu base de datos MongoDB
+            'username': 'tu_usuario',
+            'password': 'tu_contraseña',
+        }
     }
 }
 # Password validation
@@ -126,3 +129,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DB_NAME="mongodb://<user>:<password>@<host_ip>:<host_port>"
