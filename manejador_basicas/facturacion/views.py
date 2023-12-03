@@ -9,36 +9,66 @@ from facturacion.models.Manual_Tarifario import Manual_Tarifario
 from django.core.exceptions import ObjectDoesNotExist
 import pymongo
 from manejador_basicas.manejador_basicas import settings
+import requests
 
 def crear_factura(request):
     if request.method == 'GET':
-        cedula_paciente = request.GET.get('cedula_paciente').strip()
+        try: 
+            r=requests.get(settings.PATH_VAR, headers={"Accept":"application/json"})
+            data=r.json
+            contrato=data["Contrato"]
+            servicios=data["Servicios"]
+            factura=[]
+            precioTotal=0
+            mt=getServiciosManualTarifario(contrato)
+            if 'servicios' in mt:
+                servicios_mt = mt['servicios']
 
-        try:
-            paciente = Paciente.objects.get(id__iexact=cedula_paciente)
-            servicios = EstadoCuenta.objects.filter(paciente=paciente).values('servicio')
+                # Iterar sobre los servicios para encontrar el precio en el manual tarifario
+                for servicio in servicios:
 
-            factura = []
-            precio_total = 0
+                    # Buscar el servicio por su ID en la lista de servicios del manual tarifario
+                    servicio_encontrado = next((s for s in servicios_mt if s['id'] == servicio), None)
 
-            for servicio in servicios:
-                manual_tarifario = Manual_Tarifario.objects.get(id_servicio=servicio['servicio'], id_contrato=paciente.id_contrato)
-                servicio = Servicio.objects.get(id=servicio['servicio'])
+                    if servicio_encontrado: 
+                        # Obtener y sumar el precio del servicio encontrado
+                        precio_servicio = servicio_encontrado.get('precio', 0)
+                        precio_total += precio_servicio
 
-                precio = manual_tarifario.precio
-                factura.append((servicio.descripcion, precio))
-                precio_total += precio
+                        # Puedes hacer más cosas con el servicio si es necesario
+                        factura.append({"id_servicio": servicio, "precio_servicio": precio_servicio})
+                    else:
+                        # Manejar el caso cuando no se encuentra el servicio
+                        factura.append({"id_servicio": servicio, "precio_servicio": "No encontrado"})
 
-            return render(request, 'resultado_consulta.html', {
-                'id_factura': paciente.id,  # ID del paciente
-                'servicios_y_precios': factura,
-                'precio_total': precio_total  # Precio total
-            })
+                # Puedes hacer más cosas con la factura si es necesario
+                return JsonResponse({"factura": factura, "precio_total": precio_total})
 
-        except ObjectDoesNotExist:
-             raise Http404("El paciente no existe")
+            else:
+                return JsonResponse({"mensaje": "No se encontró el manual tarifario para el contrato específico"}, status=404)
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+        
 
 
+def getServiciosManualTarifario (idContrato):
+    try:
+        client = pymongo.MongoClient(settings.DB_NAME)
+        db = client["facturacion"]
+        collection = db["ManualTarifario"]
+        manual_tarifario = collection.find_one({"idContrato": idContrato})
+        if not manual_tarifario:
+            return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {id_contrato}"}, status=404)
+        servicios = manual_tarifario.get('servicios', [])
+
+        return JsonResponse({"idContrato": manual_tarifario['idContrato'], "servicios": servicios})
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+    finally:
+        client.close()
 
 def lista_pacientes(request):
     pacientes = Paciente.objects.all()
