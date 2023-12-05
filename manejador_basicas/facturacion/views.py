@@ -2,10 +2,6 @@ import json
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import Http404, HttpResponse, JsonResponse
-from facturacion.models.Paciente import Paciente
-from facturacion.models.EstadoCuenta import EstadoCuenta
-from facturacion.models.Servicio import Servicio
-from facturacion.models.Manual_Tarifario import Manual_Tarifario
 from django.core.exceptions import ObjectDoesNotExist
 import pymongo
 from manejador_basicas.manejador_basicas import settings
@@ -59,7 +55,7 @@ def getServiciosManualTarifario (idContrato):
         collection = db["ManualTarifario"]
         manual_tarifario = collection.find_one({"idContrato": idContrato})
         if not manual_tarifario:
-            return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {id_contrato}"}, status=404)
+            return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}, status=404)
         servicios = manual_tarifario.get('servicios', [])
 
         return JsonResponse({"idContrato": manual_tarifario['idContrato'], "servicios": servicios})
