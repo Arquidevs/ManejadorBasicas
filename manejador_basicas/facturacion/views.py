@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import Http404, HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 import pymongo
-from manejador_basicas.manejador_basicas import settings
+from manejador_basicas import settings
 import requests
 
 def crear_factura(request):
