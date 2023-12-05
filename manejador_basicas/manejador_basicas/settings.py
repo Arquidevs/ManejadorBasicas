@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'facturacion',
         'ENFORCE_SCHEMA': False,  # Puedes ajustar esto según tus necesidades
         'CLIENT': {
-            'host': '34.132.134.239',  # Por ejemplo, 'localhost'
+            'host': '10.128.0.20',  # Por ejemplo, 'localhost'
             'port': 27017,  # Puerto de tu base de datos MongoDB
             'username': 'userRasi',
             'password': 'rasi2023',
