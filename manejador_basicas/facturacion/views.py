@@ -67,8 +67,10 @@ def getServiciosManualTarifario (idContrato):
         client.close()
 
 def lista_pacientes(request):
-    pacientes = Paciente.objects.all()
-    return render(request, 'lista_pacientes.html', {'pacientes': pacientes})
+    
+    if request.method == 'GET':
+        pacientes = request.get('http://35.193.9.218:3000/pacientes/', )
+        return render(request, 'lista_pacientes.html', {'pacientes': pacientes})
 
 def crearManualTarifario (request):
     if request.method == 'POST':
