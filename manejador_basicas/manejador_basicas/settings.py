@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'facturacion',
         'ENFORCE_SCHEMA': False,  # Puedes ajustar esto según tus necesidades
         'CLIENT': {
-            'host': '10.128.0.22',  # Por ejemplo, 'localhost'
+            'host': '10.128.0.23',  # Por ejemplo, 'localhost'
             'port': 27017,  # Puerto de tu base de datos MongoDB
             'username': 'userRasi',
             'password': 'rasi2023',
@@ -130,4 +130,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DB_NAME="mongodb://userRasi:rasi2023@10.128.0.22:27017"
+DB_NAME="mongodb://userRasi:rasi2023@10.128.0.23:27017"
