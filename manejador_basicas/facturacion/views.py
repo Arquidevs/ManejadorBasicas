@@ -37,13 +37,16 @@ def crear_factura(request):
             for servicio in lista_servicios:
                 resultado = collection_mt.find_one({'idContrato': int(contrato), 'idServicio': servicio})
                 servicio_encontrado = collection_servicios.find_one({'id':servicio})
-                factura.append(servicio_encontrado)
-                print(resultado)
+                factura.append((servicio_encontrado['tipo'], resultado['precio']))
                 precioTotal+=resultado['precio']
             
-            print(factura, precioTotal)
+            
 
-            return JsonResponse({"factura": factura, "precio_total": precioTotal})
+            return render(request, 'resultado_consulta.html', {
+                'id_factura': contrato,  # ID del paciente
+                'servicios_y_precios': factura,
+                'precio_total': precioTotal  # Precio total
+            })
 
         except Exception as e:
             error_message = f"Error: {str(e)}\n\n{traceback.format_exc()}"
