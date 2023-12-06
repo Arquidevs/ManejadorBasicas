@@ -62,7 +62,7 @@ def getServiciosManualTarifario(idContrato):
     try:
         client = pymongo.MongoClient(settings.DB_NAME)
         db = client["facturacion"]
-        collection = db["Manual_Tarifario"]
+        collection = db["ManualTarifario"]
         docs = collection.find()
         for doc in docs:
             print(doc)
