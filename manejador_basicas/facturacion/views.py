@@ -12,9 +12,9 @@ def crear_factura(request):
     if request.method == 'GET':
         try: 
             cedula = request.GET.get('cedula_paciente').strip()
-            paciente=requests.get('http://35.193.9.218:3000/pacientes', cedula)
-            contrato=requests.get('http://35.193.9.218:3000/contratos', cedula)
-            estado=requests.get('http://35.193.9.218:3000/estado_cuenta', cedula)
+            paciente=requests.get('http://35.193.9.218:3000/pacientes', params={'cedula': cedula})
+            contrato=requests.get('http://35.193.9.218:3000/contratos', params={'cedula': cedula})
+            estado=requests.get('http://35.193.9.218:3000/estado_cuenta', params={'cedula': cedula})
             data_paciente=paciente.json()
             data_contrato=contrato.json()
             data_estado=estado.json()
