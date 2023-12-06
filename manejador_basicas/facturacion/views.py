@@ -36,7 +36,7 @@ def crear_factura(request):
             for servicio in lista_servicios:
                 resultado = collection_mt.find_one({'idContrato': contrato, 'idServicio': servicio})
                 servicio_encontrado = collection_servicios.find_one({'id':servicio})
-                factura.add(servicio_encontrado)
+                factura.append(servicio_encontrado)
                 precioTotal+=resultado['precio']
 
             return JsonResponse({"factura": factura, "precio_total": precioTotal})
