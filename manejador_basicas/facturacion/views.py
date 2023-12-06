@@ -30,7 +30,7 @@ def crear_factura(request):
 
             factura=[]
             precioTotal=0
-            mt=getServiciosManualTarifario({'idContrato': contrato})
+            mt=getServiciosManualTarifario(contrato)
             if 'servicios' in mt:
                 servicios_mt = mt['servicios']
 
