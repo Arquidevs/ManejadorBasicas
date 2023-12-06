@@ -14,8 +14,8 @@ from django.views.decorators.csrf import csrf_exempt
 #@login_required
 #@csrf_exempt
 def crear_factura(request):
-    role= getRole(request)
-    if role=="Administrativo":
+    #role= getRole(request)
+    #if role=="Administrativo":
         if request.method == 'GET':
             try: 
                 cedula = request.GET.get('cedula_paciente').strip()
