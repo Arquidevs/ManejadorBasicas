@@ -74,6 +74,8 @@ DATABASES = {
             'port': 27017,  # Puerto de tu base de datos MongoDB
             'username': 'userRasi',
             'password': 'rasi2023',
+            'name': 'facturacion-db',
+            'authMechanism': 'SCRAM-SHA-1',
         }
     }
 }
