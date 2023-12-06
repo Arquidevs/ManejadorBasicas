@@ -10,10 +10,17 @@ import requests
 def crear_factura(request):
     if request.method == 'GET':
         try: 
-            r=requests.get(settings.PATH_VAR, headers={"Accept":"application/json"})
-            data=r.json
-            contrato=data["Contrato"]
-            servicios=data["Servicios"]
+            cedula = request.GET.get('cedula_paciente').strip()
+            paciente=requests.get('http://35.193.9.218:3000/pacientes', cedula)
+            contrato=requests.get('http://35.193.9.218:3000/contratos', cedula)
+            estado=requests.get('http://35.193.9.218:3000/estado_cuenta', cedula)
+            data_paciente=paciente.json
+            data_contrato=contrato.json
+            data_estado=estado.json
+
+            contrato=data_contrato["id"]
+            servicios=[item['servicio'] for item in data_estado]
+
             factura=[]
             precioTotal=0
             mt=getServiciosManualTarifario(contrato)
@@ -29,7 +36,7 @@ def crear_factura(request):
                     if servicio_encontrado: 
                         # Obtener y sumar el precio del servicio encontrado
                         precio_servicio = servicio_encontrado.get('precio', 0)
-                        precio_total += precio_servicio
+                        precioTotal += precio_servicio
 
                         # Puedes hacer más cosas con el servicio si es necesario
                         factura.append({"id_servicio": servicio, "precio_servicio": precio_servicio})
@@ -38,7 +45,7 @@ def crear_factura(request):
                         factura.append({"id_servicio": servicio, "precio_servicio": "No encontrado"})
 
                 # Puedes hacer más cosas con la factura si es necesario
-                return JsonResponse({"factura": factura, "precio_total": precio_total})
+                return JsonResponse({"factura": factura, "precio_total": precioTotal})
 
             else:
                 return JsonResponse({"mensaje": "No se encontró el manual tarifario para el contrato específico"}, status=404)
