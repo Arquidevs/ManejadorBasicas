@@ -19,23 +19,16 @@ def crear_factura(request):
             data_contrato=contrato.json()
             data_estado=estado.json()
 
-            client = pymongo.MongoClient(settings.DB_NAME)
-            db = client["facturacion"]
-            collection = db["ManualTarifario"]
-            manual_tarifario = collection.find_one({"idContrato": cedula})
-
             contrato=data_contrato["id"]
-            print(contrato)
-            servicios=[item['servicio'] for item in data_estado]
 
             factura=[]
             precioTotal=0
             mt=getServiciosManualTarifario(contrato)
-            if 'servicios' in mt:
+            if 'servicio' in mt:
                 servicios_mt = mt['servicios']
 
                 # Iterar sobre los servicios para encontrar el precio en el manual tarifario
-                for servicio in servicios:
+                for servicio in servicios_mt:
 
                     # Buscar el servicio por su ID en la lista de servicios del manual tarifario
                     servicio_encontrado = next((s for s in servicios_mt if s['id'] == servicio), None)
@@ -69,10 +62,6 @@ def getServiciosManualTarifario (idContrato):
         db = client["facturacion"]
         collection = db["ManualTarifario"]
         manual_tarifario = collection.find({"idContrato": idContrato})
-        for manual in manual_tarifario:
-            print(manual)
-            respuesta = manual
-        print(respuesta)
         if not manual_tarifario:
             return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}, status=404)
         servicios = manual_tarifario.get('servicios', [])
@@ -105,7 +94,7 @@ def crearManualTarifario (request):
             json_data = json.loads(request.body)
             client= pymongo.MongoClient(settings.DB_NAME)
             db= client["facturacion"]
-            collection = db["ManualTarifario"]
+            collection = db["Manual_Tarifario"]
             data = {
                 'idContrato': json_data.get('id', ''),
                 'servicios': []
