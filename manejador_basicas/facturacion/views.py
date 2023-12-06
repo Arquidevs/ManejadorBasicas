@@ -28,7 +28,8 @@ def crear_factura(request):
             collection_servicios = db['Servicios']
 
             ## ej [16, 25 ,46]
-            print(data_estado)
+            for item in data_estado:
+                print(item)
 
             factura=[]
             precioTotal=0
