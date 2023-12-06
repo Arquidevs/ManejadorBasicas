@@ -146,7 +146,7 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
     'role',
 ]
 AUTHENTICATION_BACKENDS = {
-    'facturacion.auth0backend.Auth0',
+    'manejador_basicas.auth0backend.Auth0',
     'django.contrib.auth.backends.ModelBackend',
 }
 
