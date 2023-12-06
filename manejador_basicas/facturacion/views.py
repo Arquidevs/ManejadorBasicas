@@ -18,8 +18,8 @@ def crear_factura(request):
             data_paciente=paciente.json()
             data_contrato=contrato.json()
             data_estado=estado.json()
-            print(data_estado)
 
+            print(data_contrato)
             contrato=data_contrato["id"]
             servicios=[item['servicio'] for item in data_estado]
 
