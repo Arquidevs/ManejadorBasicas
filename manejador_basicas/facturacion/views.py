@@ -205,18 +205,5 @@ def addServicios(request):
             return HttpResponse("Método no permitido", status=405)
         
 
-class YourSignupView(View):
-    template_name = 'registration/signup.html'
-
-    def get(self, request, *args, **kwargs):
-        form = UserCreationForm()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')  # Cambia 'home' al nombre de tu vista de inicio
-        return render(request, self.template_name, {'form': form})        
+  
         
