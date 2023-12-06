@@ -72,9 +72,17 @@ def lista_pacientes(request):
         
         # Verifica si la solicitud fue exitosa (código de respuesta 200)
         if response.status_code == 200:
-            # Si la solicitud fue exitosa, carga los datos JSON
-            pacientes = response.json()
-            return render(request, 'lista_pacientes.html', {'pacientes': pacientes})
+            try:
+                # Imprime la respuesta para entender qué tipo de contenido estás recibiendo
+                print(response.text)
+                
+                # Intenta cargar los datos JSON si la respuesta no está vacía
+                pacientes = response.json()
+                return render(request, 'lista_pacientes.html', {'pacientes': pacientes})
+            except ValueError as e:
+                # Si la respuesta no es un JSON válido, imprime el error para obtener más información
+                print(f"Error al decodificar JSON: {e}")
+                return render(request, 'error.html', {'error_message': 'Error en el formato de la respuesta'})
         else:
             # Si la solicitud no fue exitosa, maneja el error de alguna manera
             return render(request, 'error.html', {'error_message': 'Error en la solicitud'})
