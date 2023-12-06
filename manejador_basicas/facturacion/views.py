@@ -69,6 +69,7 @@ def getServiciosManualTarifario (idContrato):
         db = client["facturacion"]
         collection = db["ManualTarifario"]
         manual_tarifario = collection.find_one({"idContrato": idContrato})
+        print(manual_tarifario)
         if not manual_tarifario:
             return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}, status=404)
         servicios = manual_tarifario.get('servicios', [])
