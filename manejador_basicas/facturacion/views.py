@@ -24,7 +24,7 @@ def crear_factura(request):
             collection = db["ManualTarifario"]
             manual_tarifario = collection.find_one({"idContrato": cedula})
 
-            print(manual_tarifario)
+            print(collection.find())
 
             contrato=data_contrato["id"]
             print(contrato)
