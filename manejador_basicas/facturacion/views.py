@@ -40,7 +40,7 @@ def crear_factura(request):
             precioTotal=0
 
             for servicio in lista_servicios:
-                resultado = collection_mt.find_one({'idContrato': contrato, 'idServicio': servicio})
+                resultado = collection_mt.find_one({'idContrato': int(contrato), 'idServicio': servicio})
                 servicio_encontrado = collection_servicios.find_one({'id':servicio})
                 factura.append(servicio_encontrado)
                 print(resultado)
