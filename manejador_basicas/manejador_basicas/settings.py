@@ -130,4 +130,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DB_NAME="mongodb://userRasi:rasi2023@10.128.0.20:27017"
+DB_NAME="mongodb://userRasi:rasi2023@10.128.0.22:27017"
