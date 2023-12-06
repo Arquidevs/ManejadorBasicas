@@ -4,17 +4,15 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import Http404, HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
-from django.views import View
 import pymongo
 from manejador_basicas import settings
 import requests
 from django.contrib.auth.decorators import login_required
+from manejador_basicas.auth0backend import getRole
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.shortcuts import render, redirect
 
 @login_required
+@csrf_exempt
 def crear_factura(request):
         if request.method == 'GET':
             try: 
@@ -202,20 +200,3 @@ def addServicios(request):
 
         else:
             return HttpResponse("Método no permitido", status=405)
-        
-
-class YourSignupView(View):
-    template_name = 'registration/signup.html'
-
-    def get(self, request, *args, **kwargs):
-        form = UserCreationForm()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')  # Cambia 'home' al nombre de tu vista de inicio
-        return render(request, self.template_name, {'form': form})      
-        
