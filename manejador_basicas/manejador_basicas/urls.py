@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+from manejador_basicas.facturacion.views import YourSignupView
 from . import views
 from django.contrib.auth import views as auth_views
 
@@ -25,5 +27,5 @@ urlpatterns = [
     path('health/', views.health_check, name='health'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('signup/', auth_views.SignupView.as_view(template_name='registration/signup.html'), name='signup'),
+    path('signup/', YourSignupView.as_view(), name='signup'),
 ]
