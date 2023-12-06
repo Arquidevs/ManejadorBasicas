@@ -79,7 +79,6 @@ def lista_pacientes(request):
             except ValueError as e:
                 # Si la respuesta no es un JSON válido, maneja el error
                 error_message = f"Error al decodificar JSON: {e}"
-                return render(request, 'error.html', {'error_message': error_message})
         
 def crearManualTarifario (request):
     if request.method == 'POST':
