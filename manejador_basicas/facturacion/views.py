@@ -9,7 +9,6 @@ import pymongo
 from manejador_basicas import settings
 import requests
 from django.contrib.auth.decorators import login_required
-from manejador_basicas.auth0backend import getRole
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
