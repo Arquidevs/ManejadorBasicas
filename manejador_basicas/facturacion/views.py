@@ -15,10 +15,10 @@ def crear_factura(request):
             paciente=requests.get(f'http://35.193.9.218:3000/pacientes/{cedula}')
             contrato=requests.get(f'http://35.193.9.218:3000/contratos/{cedula}')
             estado=requests.get(f'http://35.193.9.218:3000/estado_cuenta/{cedula}')
-            print(paciente.text)
             data_paciente=paciente.json()
             data_contrato=contrato.json()
             data_estado=estado.json()
+            print(data_estado)
 
             contrato=data_contrato["id"]
             servicios=[item['servicio'] for item in data_estado]
