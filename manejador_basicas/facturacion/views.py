@@ -1,4 +1,5 @@
 import json
+import traceback
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import Http404, HttpResponse, JsonResponse
@@ -51,7 +52,8 @@ def crear_factura(request):
                 return JsonResponse({"mensaje": "No se encontró el manual tarifario para el contrato específico"}, status=404)
 
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
+            error_message = f"Error: {str(e)}\n\n{traceback.format_exc()}"
+            return JsonResponse({"error": error_message}, status=500)
         
 
 
