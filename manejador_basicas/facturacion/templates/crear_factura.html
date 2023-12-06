@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscar Paciente</title>
+</head>
+<body>
+    <h1>Buscar Paciente</h1>
+    <form action="{% url 'crear_factura' %}" method="get">
+        {% csrf_token %}
+        <label for="cedula_paciente">Cédula del Paciente:</label>
+        <input type="text" id="cedula_paciente" name="cedula_paciente">
+        <input type="submit" value="Buscar">
+    </form>
+</body>
+</html>
