@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'facturacion',
-    'social_django',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'manejador_basicas.urls'
@@ -133,23 +135,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DB_NAME="mongodb://userRasi:rasi2023@10.128.0.23:27017"
-
-LOGIN_URL = "/login/auth0"
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "https://rasi-medical6.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.197.213.153:8080"
-SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
-SOCIAL_AUTH_AUTH0_DOMAIN = 'rasi-medical6.us.auth0.com'
-SOCIAL_AUTH_AUTH0_KEY = 'PztIHNgh9bKIXkcDT7uakM7UWlhZ9IHq'
-SOCIAL_AUTH_AUTH0_SECRET = 'HBMXUeQqjVb9M1cHrv1P6AtDbjKgnanpzemHWR3rkOZ1rKSew57N34QOmQBpy-Xa'
-SOCIAL_AUTH_AUTH0_SCOPE = [
-    'openid',
-    'profile',
-    'email',
-    'role',
-]
-AUTHENTICATION_BACKENDS = {
-    'manejador_basicas.auth0backend.Auth0',
-    'django.contrib.auth.backends.ModelBackend',
-}
 
 CORS_ORIGIN_ALLOW_ALL = True

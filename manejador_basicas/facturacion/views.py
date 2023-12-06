@@ -12,7 +12,6 @@ from manejador_basicas.auth0backend import getRole
 from django.views.decorators.csrf import csrf_exempt
 
 @login_required
-@csrf_exempt
 def crear_factura(request):
         if request.method == 'GET':
             try: 
@@ -200,3 +199,5 @@ def addServicios(request):
 
         else:
             return HttpResponse("Método no permitido", status=405)
+        
+        
