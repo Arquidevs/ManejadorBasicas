@@ -38,9 +38,9 @@ def getRole(request):
     user = request.user
     auth0user = user.social_auth.get(provider="auth0")
     accessToken = auth0user.extra_data['access_token']
-    url = "https://rasi-grupo6.us.auth0.com/userinfo"
+    url = "rasi-medical6.us.auth0.com/userinfo"
     headers = {'authorization': 'Bearer ' + accessToken}
     resp = requests.get(url, headers=headers)
     userinfo = resp.json()
-    role = userinfo['rasi-grupo6.us.auth0.com/role']
+    role = userinfo['rasi-medical6.us.auth0.com/role']
     return role

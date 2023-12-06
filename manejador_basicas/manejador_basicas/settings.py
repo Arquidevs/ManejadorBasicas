@@ -136,11 +136,11 @@ DB_NAME="mongodb://userRasi:rasi2023@10.128.0.23:27017"
 
 LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "https://rasi-grupo6.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.197.213.153:8080"
+LOGOUT_REDIRECT_URL = "https://rasi-medical6.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.197.213.153:8080"
 SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
-SOCIAL_AUTH_AUTH0_DOMAIN = 'rasi-grupo6.us.auth0.com'
-SOCIAL_AUTH_AUTH0_KEY = 'YHxVTL9o8rNM94Gx41AVqfGsqGbMl5Uy'
-SOCIAL_AUTH_AUTH0_SECRET = 'Uvw2s74fEvv2ocaQR1l8r2eSI_abtQvG_-RgSzc4RdeJG7P41nfictcbHAmoKCPl'
+SOCIAL_AUTH_AUTH0_DOMAIN = 'rasi-medical6.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'PztIHNgh9bKIXkcDT7uakM7UWlhZ9IHq'
+SOCIAL_AUTH_AUTH0_SECRET = 'HBMXUeQqjVb9M1cHrv1P6AtDbjKgnanpzemHWR3rkOZ1rKSew57N34QOmQBpy-Xa'
 SOCIAL_AUTH_AUTH0_SCOPE = [
     'openid',
     'profile',
