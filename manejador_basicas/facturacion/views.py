@@ -71,7 +71,7 @@ def getServiciosManualTarifario (idContrato):
         manual_tarifario = collection.find({"idContrato": idContrato})
         for manual in manual_tarifario:
             respuesta = manual
-        print(manual_tarifario)
+        print(respuesta)
         if not manual_tarifario:
             return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}, status=404)
         servicios = manual_tarifario.get('servicios', [])
