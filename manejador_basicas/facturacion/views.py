@@ -69,8 +69,6 @@ def getServiciosManualTarifario (idContrato):
 def lista_pacientes(request):
     if request.method == 'GET':
         response = requests.get('http://35.193.9.218:3000/pacientes/')
-
-        return JsonResponse(response, safe=False)
         
         # Verifica si la solicitud fue exitosa (código de respuesta 200)
         if response.status_code == 200:
