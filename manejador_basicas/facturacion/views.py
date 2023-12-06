@@ -62,7 +62,7 @@ def getServiciosManualTarifario (idContrato):
     try:
         client = pymongo.MongoClient(settings.DB_NAME)
         db = client["facturacion"]
-        collection = db["ManualTarifario"]
+        collection = db["Manual_Tarifario"]
         manual_tarifario = collection.find({"idContrato": idContrato})
         if not manual_tarifario:
             return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}, status=404)
@@ -71,8 +71,8 @@ def getServiciosManualTarifario (idContrato):
         return JsonResponse({"idContrato": manual_tarifario['idContrato'], "servicios": servicios})
 
     except Exception as e:
-            error_message = f"Error: {str(e)}\n\n{traceback.format_exc()}"
-            return JsonResponse({"error": error_message}, status=500)
+        error_message = f"Error: {str(e)}\n\n{traceback.format_exc()}"
+        return JsonResponse({"error": error_message}, status=500)
 
     finally:
         client.close()
