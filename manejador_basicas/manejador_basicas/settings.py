@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'facturacion',
     'social_django',
+    'manejador_basicas'
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'manejador_basicas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR)],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,15 +78,12 @@ WSGI_APPLICATION = 'manejador_basicas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'facturacion',
-        'ENFORCE_SCHEMA': False,  # Puedes ajustar esto según tus necesidades
-        'CLIENT': {
-            'host': '10.128.0.23',  # Por ejemplo, 'localhost'
-            'port': 27017,  # Puerto de tu base de datos MongoDB
-            'username': 'userRasi',
-            'password': 'rasi2023',
-        }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'rasi-db',
+        'USER': 'rasi-db',
+        'PASSWORD': 'rasi2023',
+        'HOST': '10.110.16.3',
+        'PORT': '',
     }
 }
 # Password validation
@@ -94,7 +91,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -106,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -132,24 +128,27 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DB_NAME="mongodb://userRasi:rasi2023@10.128.0.23:27017"
-
 LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "https://rasi-medical6.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.197.213.153:8080"
-SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
-SOCIAL_AUTH_AUTH0_DOMAIN = 'rasi-medical6.us.auth0.com'
-SOCIAL_AUTH_AUTH0_KEY = 'PztIHNgh9bKIXkcDT7uakM7UWlhZ9IHq'
-SOCIAL_AUTH_AUTH0_SECRET = 'HBMXUeQqjVb9M1cHrv1P6AtDbjKgnanpzemHWR3rkOZ1rKSew57N34QOmQBpy-Xa'
+LOGOUT_REDIRECT_URL = "https://facturacion.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.197.213.153:8080"
+SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'facturacion.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = '8wIguEUC21F5tqv66uxFqWLn2fp7Rk9S'
+SOCIAL_AUTH_AUTH0_SECRET = 'hggBcQAxygrqE6pB41UpiXorLjMjx8MrUmUAJe0ZMSfnTTFbHtwOcGV9FQtR7TtX'
 SOCIAL_AUTH_AUTH0_SCOPE = [
-    'openid',
-    'profile',
-    'email',
-    'role',
+ 'openid',
+ 'profile',
+ 'email',
+ 'role',
 ]
 AUTHENTICATION_BACKENDS = {
-    'manejador_basicas.auth0backend.Auth0',
-    'django.contrib.auth.backends.ModelBackend',
+ 'manejador_basicas.auth0backend.Auth0',
+ 'django.contrib.auth.backends.ModelBackend',
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+
+SESSION_COOKIE_SAMESITE = None
+
+CSRF_TRUSTED_ORIGINS = ['http://34.41.112.180:8000',
+                        'http://34.27.72.24:8080',
+                        'http://34.135.70.6:8080/'] 
