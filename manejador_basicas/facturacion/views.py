@@ -27,11 +27,6 @@ def crear_factura(request):
             collection_mt = db["manualtarifario"]
             collection_servicios = db['Servicios']
 
-            docs = collection_mt.find()
-            for doc in docs:
-                print(type(doc["idContrato"]), type(contrato))
-                if doc["idContrato"] == contrato:
-                    print ("Encontrado : ", doc)
 
             ## ej [16, 25 ,46]
             lista_servicios = [int(item["servicio"]) for item in data_estado]
@@ -45,6 +40,8 @@ def crear_factura(request):
                 factura.append(servicio_encontrado)
                 print(resultado)
                 precioTotal+=resultado['precio']
+            
+            print(factura, precioTotal)
 
             return JsonResponse({"factura": factura, "precio_total": precioTotal})
 
