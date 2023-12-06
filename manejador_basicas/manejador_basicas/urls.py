@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from manejador_basicas.facturacion.views import YourSignupView
+from facturacion.views import YourSignupView
 from . import views
 from django.contrib.auth import views as auth_views
 
