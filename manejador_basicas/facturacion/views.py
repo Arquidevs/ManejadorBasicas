@@ -19,38 +19,26 @@ def crear_factura(request):
             data_contrato=contrato.json()
             data_estado=estado.json()
 
+            ##id ej 10102348473
             contrato=data_contrato["id"]
 
+            client = pymongo.MongoClient(settings.DB_NAME)
+            db = client["facturacion"]
+            collection_mt = db["manualtarifario"]
+            collection_servicios = db['Servicios']
+
+            ## ej [16, 25 ,46]
+            lista_servicios = [item["servicio"] for item in data_estado]
             factura=[]
             precioTotal=0
-            mt=getServiciosManualTarifario(contrato)
-            print(mt)
-            if 'servicio' in mt:
-                
-                servicios_mt = mt['servicios']
 
-                # Iterar sobre los servicios para encontrar el precio en el manual tarifario
-                for servicio in servicios_mt:
+            for servicio in lista_servicios:
+                resultado = collection_mt.find_one({'idContrato': contrato, 'idServicio': servicio})
+                servicio_encontrado = collection_servicios.find_one({'id':servicio})
+                factura.add(servicio_encontrado)
+                precioTotal+=resultado['precio']
 
-                    # Buscar el servicio por su ID en la lista de servicios del manual tarifario
-                    servicio_encontrado = next((s for s in servicios_mt if s['id'] == servicio), None)
-
-                    if servicio_encontrado: 
-                        # Obtener y sumar el precio del servicio encontrado
-                        precio_servicio = servicio_encontrado.get('precio', 0)
-                        precioTotal += precio_servicio
-
-                        # Puedes hacer más cosas con el servicio si es necesario
-                        factura.append({"id_servicio": servicio, "precio_servicio": precio_servicio})
-                    else:
-                        # Manejar el caso cuando no se encuentra el servicio
-                        factura.append({"id_servicio": servicio, "precio_servicio": "No encontrado"})
-
-                # Puedes hacer más cosas con la factura si es necesario
-                return JsonResponse({"factura": factura, "precio_total": precioTotal})
-
-            else:
-                return JsonResponse({"mensaje": "No se encontró el manual tarifario para el contrato específico"}, status=404)
+            return JsonResponse({"factura": factura, "precio_total": precioTotal})
 
         except Exception as e:
             error_message = f"Error: {str(e)}\n\n{traceback.format_exc()}"
@@ -64,8 +52,7 @@ def getServiciosManualTarifario(idContrato):
         db = client["facturacion"]
         collection = db["manualtarifario"]
         docs = collection.find()
-        for doc in docs:
-            print(doc)
+
         # Utiliza find_one() en lugar de find()
         manual_tarifario = collection.find_one({"idContrato": idContrato})
         print(manual_tarifario)
