@@ -136,7 +136,7 @@ LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "https://rasi-grupo6.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.197.213.153:8080"
 SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
-SOCIAL_AUTH_AUTH0_DOMAIN = 'rasi-grupo6.us.auth0.com.com'
+SOCIAL_AUTH_AUTH0_DOMAIN = 'rasi-grupo6.us.auth0.com'
 SOCIAL_AUTH_AUTH0_KEY = 'N5bwdpLgXun86NnMxLEdbqohF3OH5zOM'
 SOCIAL_AUTH_AUTH0_SECRET = 'nNzMcVALMBE0ahgXf7HzvvFUYzGix2K5dgdqjC5cpqtbjVM9eLcU2XCusaSfO52A'
 SOCIAL_AUTH_AUTH0_SCOPE = [
