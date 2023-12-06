@@ -67,10 +67,17 @@ def getServiciosManualTarifario (idContrato):
         client.close()
 
 def lista_pacientes(request):
-    
     if request.method == 'GET':
-        pacientes = request.get('http://35.193.9.218:3000/pacientes/', )
-        return render(request, 'lista_pacientes.html', {'pacientes': pacientes})
+        response = requests.get('http://35.193.9.218:3000/pacientes/')
+        
+        # Verifica si la solicitud fue exitosa (código de respuesta 200)
+        if response.status_code == 200:
+            # Si la solicitud fue exitosa, carga los datos JSON
+            pacientes = response.json()
+            return render(request, 'lista_pacientes.html', {'pacientes': pacientes})
+        else:
+            # Si la solicitud no fue exitosa, maneja el error de alguna manera
+            return render(request, 'error.html', {'error_message': 'Error en la solicitud'})
 
 def crearManualTarifario (request):
     if request.method == 'POST':
