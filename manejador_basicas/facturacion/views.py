@@ -80,10 +80,6 @@ def lista_pacientes(request):
                 # Si la respuesta no es un JSON válido, maneja el error
                 error_message = f"Error al decodificar JSON: {e}"
                 return render(request, 'error.html', {'error_message': error_message})
-        else:
-            # Si la solicitud no fue exitosa, maneja el error de alguna manera
-            error_message = f"Error en la solicitud, código de respuesta: {response.status_code}"
-            return render(request, 'error.html', {'error_message': error_message})
         
 def crearManualTarifario (request):
     if request.method == 'POST':
