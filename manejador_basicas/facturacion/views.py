@@ -70,6 +70,7 @@ def getServiciosManualTarifario (idContrato):
         collection = db["ManualTarifario"]
         manual_tarifario = collection.find({"idContrato": idContrato})
         for manual in manual_tarifario:
+            print(manual)
             respuesta = manual
         print(respuesta)
         if not manual_tarifario:
