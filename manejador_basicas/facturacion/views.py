@@ -22,11 +22,10 @@ def crear_factura(request):
             client = pymongo.MongoClient(settings.DB_NAME)
             db = client["facturacion"]
             collection = db["ManualTarifario"]
-            manual_tarifario = collection.find_one({"idContrato": cedula})
+            manual_tarifario = collection.find_one({'idContrato': cedula})
 
-            documents = collection.find()
-            for document in documents:
-                print(document)
+
+            print(manual_tarifario)
 
             contrato=data_contrato["id"]
             print(contrato)
