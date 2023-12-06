@@ -29,7 +29,7 @@ def crear_factura(request):
 
             docs = collection_mt.find()
             for doc in docs:
-                print(doc["idContrato"], contrato)
+                print(type(doc["idContrato"]), type(contrato))
                 if doc["idContrato"] == contrato:
                     print ("Encontrado : ", doc)
 
