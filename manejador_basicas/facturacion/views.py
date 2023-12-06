@@ -71,7 +71,8 @@ def getServiciosManualTarifario (idContrato):
         return JsonResponse({"idContrato": manual_tarifario['idContrato'], "servicios": servicios})
 
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+            error_message = f"Error: {str(e)}\n\n{traceback.format_exc()}"
+            return JsonResponse({"error": error_message}, status=500)
 
     finally:
         client.close()
