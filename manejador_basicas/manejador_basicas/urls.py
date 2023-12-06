@@ -7,5 +7,4 @@ urlpatterns = [
     path('', views.index),
     path('/facturacion/', include('facturacion.urls')),
     path('health/', views.health_check, name='health'),
-    path('accounts/', include('django.contrib.auth.urls')),  # URL de autenticación de Django
 ]
