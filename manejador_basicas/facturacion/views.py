@@ -63,7 +63,9 @@ def getServiciosManualTarifario(idContrato):
         client = pymongo.MongoClient(settings.DB_NAME)
         db = client["facturacion"]
         collection = db["Manual_Tarifario"]
-
+        docs = collection.find()
+        for doc in docs:
+            print(doc)
         # Utiliza find_one() en lugar de find()
         manual_tarifario = collection.find_one({"idContrato": idContrato})
         print(manual_tarifario)
