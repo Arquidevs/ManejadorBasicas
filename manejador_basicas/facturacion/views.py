@@ -24,7 +24,9 @@ def crear_factura(request):
             factura=[]
             precioTotal=0
             mt=getServiciosManualTarifario(contrato)
+            print(mt)
             if 'servicio' in mt:
+                
                 servicios_mt = mt['servicios']
 
                 # Iterar sobre los servicios para encontrar el precio en el manual tarifario
