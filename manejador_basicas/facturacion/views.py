@@ -66,7 +66,7 @@ def getServiciosManualTarifario(idContrato):
 
         # Utiliza find_one() en lugar de find()
         manual_tarifario = collection.find_one({"idContrato": idContrato})
-
+        print(manual_tarifario)
         if not manual_tarifario:
             return {"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}
 
