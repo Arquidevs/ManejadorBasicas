@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Manejador de Facturación</title>
     <style>
@@ -67,36 +67,46 @@
             border-radius: 5px;
             font-size: 16px;
         }
-
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="title">Manejador de Facturación</div>
-        <div class="button-container">
-            <a href="#" id="crear-factura-btn" class="btn">Crear Factura</a>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <div id="formulario-crear-factura">
-                <h2>Generar Factura</h2>
-                <form action="{% url 'crear_factura' %}" method="get">
-                    {% csrf_token %}
-                    <label for="cedula_paciente">Cédula del Paciente:</label>
-                    <input type="text" id="cedula_paciente" name="cedula_paciente">
-                    <button type="submit" class="btn">Generar Factura</button>
-                </form>
+    <main>
+        <div class="container">
+            <div class="title">Manejador de Facturación</div>
+            <div class="button-container">
+                <a href="#" id="crear-factura-btn" class="btn">Crear Factura</a>
+
+                <div id="formulario-crear-factura">
+                    <h2>Generar Factura</h2>
+                    <form action="{% url 'crear_factura' %}" method="get">
+                        {% csrf_token %}
+                        <label for="cedula_paciente">Cédula del Paciente:</label>
+                        <input type="text" id="cedula_paciente" name="cedula_paciente">
+                        <button type="submit" class="btn">Generar Factura</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <a href="{% url 'lista_pacientes' %}" class="btn">Ver Lista de Pacientes</a>
-    </div>
+        <div class="container">
+            <a href="{% url 'lista_pacientes' %}" class="btn">Ver Lista de Pacientes</a>
+        </div>
+    </main>
 
-    <script>
-        document.getElementById('crear-factura-btn').addEventListener('click', function() {
-            document.getElementById('formulario-crear-factura').style.display = 'block';
-            this.style.display = 'none';
-        });
-    </script>
+    <footer>
+        <!-- Pie de página -->
+    </footer>
 </body>
 </html>

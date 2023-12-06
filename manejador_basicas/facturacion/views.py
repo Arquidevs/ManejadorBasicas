@@ -8,10 +8,9 @@ import pymongo
 from manejador_basicas import settings
 import requests
 from django.contrib.auth.decorators import login_required
-from manejador_basicas.auth0backend import getRole
 from django.views.decorators.csrf import csrf_exempt
 
-#@login_required
+@login_required
 #@csrf_exempt
 def crear_factura(request):
         if request.method == 'GET':
@@ -61,8 +60,6 @@ def crear_factura(request):
 @login_required
 @csrf_exempt
 def getServiciosManualTarifario(idContrato, request):
-    role= getRole(request)
-    if role=="Administrativo":
         try:
             client = pymongo.MongoClient(settings.DB_NAME)
             db = client["facturacion"]
@@ -90,8 +87,6 @@ def getServiciosManualTarifario(idContrato, request):
 @login_required
 @csrf_exempt
 def lista_pacientes(request):
-    role= getRole(request)
-    if role=="Administrativo":
         if request.method == 'GET':
             response = requests.get('http://35.193.9.218:3000/pacientes/')
             
@@ -108,8 +103,6 @@ def lista_pacientes(request):
 @login_required
 @csrf_exempt        
 def crearManualTarifario (request):
-    role= getRole(request)
-    if role=="Administrativo":
         if request.method == 'POST':
             try: 
                 json_data = json.loads(request.body)
@@ -132,8 +125,6 @@ def crearManualTarifario (request):
 @login_required
 @csrf_exempt    
 def crearServicio (request):
-    role= getRole(request)
-    if role=="Administrativo":
         if request.method == 'POST':
             try: 
                 json_data = json.loads(request.body)
@@ -157,8 +148,6 @@ def crearServicio (request):
 @login_required
 @csrf_exempt       
 def addServicios(request):
-    role= getRole(request)
-    if role=="Administrativo":
         if request.method == 'POST':
             try:
                 json_data = json.loads(request.body)
