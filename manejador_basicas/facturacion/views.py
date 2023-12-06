@@ -58,24 +58,30 @@ def crear_factura(request):
         
 
 
-def getServiciosManualTarifario (idContrato):
+def getServiciosManualTarifario(idContrato):
     try:
         client = pymongo.MongoClient(settings.DB_NAME)
         db = client["facturacion"]
         collection = db["Manual_Tarifario"]
-        manual_tarifario = collection.find({"idContrato": idContrato})
-        if not manual_tarifario:
-            return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}, status=404)
-        servicios = manual_tarifario.get('servicios', [])
 
-        return JsonResponse({"idContrato": manual_tarifario['idContrato'], "servicios": servicios})
+        # Utiliza find_one() en lugar de find()
+        manual_tarifario = collection.find_one({"idContrato": idContrato})
+
+        if not manual_tarifario:
+            return {"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}
+
+        servicios = manual_tarifario.get('servicios', [])
+        
+        return {"idContrato": manual_tarifario['idContrato'], "servicios": servicios}
 
     except Exception as e:
+        # Captura la excepción y devuelve un mensaje de error
         error_message = f"Error: {str(e)}\n\n{traceback.format_exc()}"
-        return JsonResponse({"error": error_message}, status=500)
+        return {"error": error_message}
 
     finally:
         client.close()
+
 
 def lista_pacientes(request):
     if request.method == 'GET':
