@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('crear_factura/', views.crear_factura, name='crear_factura'),
-    path('lista_pacientes/', views.lista_pacientes, name='lista_pacientes')
+    path('lista_pacientes/', views.lista_pacientes, name='lista_pacientes'),
+    path('signup/', views.YourSignupView.as_view(), name='signup'),
 ]
