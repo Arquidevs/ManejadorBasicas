@@ -19,6 +19,12 @@ def crear_factura(request):
             data_contrato=contrato.json()
             data_estado=estado.json()
 
+            client = pymongo.MongoClient(settings.DB_NAME)
+            db = client["facturacion"]
+            collection = db["ManualTarifario"]
+
+            print(collection)
+
             contrato=data_contrato["id"]
             print(contrato)
             servicios=[item['servicio'] for item in data_estado]
