@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'manejador_basicas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django',
+        'ENGINE': 'djongo',
         'NAME': 'facturacion',
         'ENFORCE_SCHEMA': False,  # Puedes ajustar esto según tus necesidades
         'CLIENT': {
