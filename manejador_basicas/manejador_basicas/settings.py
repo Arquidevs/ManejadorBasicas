@@ -131,4 +131,3 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DB_NAME="mongodb://userRasi:rasi2023@10.128.0.20:27017"
-#PATH_VAR = "http://" + os.environ.get("VARIABLES_HOST", "0.0.0.0") + ":" + os.environ.get("VARIABLES_PORT", "8080") + "/pacientes"
