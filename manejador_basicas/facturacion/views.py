@@ -68,7 +68,7 @@ def getServiciosManualTarifario (idContrato):
         client = pymongo.MongoClient(settings.DB_NAME)
         db = client["facturacion"]
         collection = db["ManualTarifario"]
-        manual_tarifario = collection.find_one({"idContrato": idContrato})
+        manual_tarifario = collection.find({"idContrato": idContrato})
         print(manual_tarifario)
         if not manual_tarifario:
             return JsonResponse({"mensaje": f"No se encontró un Manual Tarifario con id_contrato: {idContrato}"}, status=404)
