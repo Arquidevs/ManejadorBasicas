@@ -27,8 +27,14 @@ def crear_factura(request):
             collection_mt = db["manualtarifario"]
             collection_servicios = db['Servicios']
 
+            docs = collection_mt.find()
+            for doc in docs:
+                if doc['idContrato'] == contrato:
+                    print (doc)
+
             ## ej [16, 25 ,46]
             lista_servicios = [int(item["servicio"]) for item in data_estado]
+            print(lista_servicios)
             print(contrato)
             factura=[]
             precioTotal=0
