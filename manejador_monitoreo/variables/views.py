@@ -1,0 +1,43 @@
+from django.shortcuts import render
+from django.contrib import messages
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+from .forms import VariableForm
+from .logic.variable_logic import get_variables, create_variable
+from django.contrib.auth.decorators import login_required
+from monitoring.auth0backend import getRole
+
+@login_required
+def variable_list(request):
+    role = getRole(request)
+    if role == "Medico":
+        variables = get_variables()
+        context = {
+            'variable_list': variables
+        }
+        return render(request, 'variables.html', context)
+    else:
+        return HttpResponse("Unauthorized User")
+
+
+@login_required
+def variable_create(request):
+    role = getRole(request)
+    if role == "Medico":
+        if request.method == 'POST':
+            form = VariableForm(request.POST)
+            if form.is_valid():
+                create_variable(form)
+                messages.add_message(request, messages.SUCCESS, 'Successfully created variable')
+                return HttpResponseRedirect(reverse('variable_list'))
+            else:
+                print(form.errors)
+        else:
+            form = VariableForm()
+
+        context = {
+            'form': form,
+        }
+        return render(request, 'variableCreate.html', context)
+    else:
+        return HttpResponse("Unauthorized User")
